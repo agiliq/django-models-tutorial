@@ -1,3 +1,13 @@
+#!/usr/bin/env python
+import os
+import sys
+import readline
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "books.settings")
+
+from authors.models import Book, Author, Publisher
+
+
 def level1(input):
     return True
     
@@ -10,55 +20,45 @@ def level3(input):
 
 levels = [
     {
-    level = 1,
-    test = level1
-    greet = """
+        level: 1,
+        test: level1,
+        greet: """
     Welcome to the Queryget tutorial.
     The interactive queryset tutorial.
     exit the prompt by typing "q"
-    """
-    }
-    question = """
+    """,
+        question: """
     What is your name?
-    """
-    goodbye = """
-    """
+    """,
+        goodbye: "",
     },
     {
-    level = 2,
-    test = level2
-    greet = """
+        level: 2,
+        test: level2,
+        greet: """
     The first article you should know about is .all.
     It will give you all the entries for a particular model.
     Eg to get all the Books, the command is
     Book.objects.all()
-    """
-    }
-    question = """
-    How can you get all the Authors?
-    """
-    goodbye = """
-    """
-    }
+    """,
+        question: """
+        How can you get all the Authors?
+        """,
+        goodbye: "",
+    },
     {
-    level = 2,
-    test = level2
-    greet = """
+        level: 2,
+        test: level2,
+        greet: """
     The first article you should know about is .all.
     It will give you all the entries for a particular model.
     Eg to get all the Books, the command is
     Book.objects.all()
-    """
-    }
-    question = """
+    """,
+        question: """
     How can you get all the Authors?
-    """
-    goodbye = """
-    """
+    """,
+        goodbye: "",
     }
     
 ]
-
-
-    
-
