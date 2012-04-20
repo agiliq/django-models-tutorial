@@ -4,29 +4,44 @@ import sys
 import readline
 import json
 
+from django.utils.termcolors import colorize
+
 from levels import levels
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "books.settings")
 
 
-def dump_gameinfo(level=1, **kwargs):
-    gameinfo = kwargs
-    gameinfo['current_level'] = level
+def dump_gameinfo(**kwargs):
+    """
+    1. Assume that this file always exists and has valid json
+    2. Update the loaded json with kwargs and rewrite the file
+    """
+    with open('.gameinfo.json', 'r') as f:
+        game_info = json.loads(f.read())
+        if 'username' not in game_info:
+            game_info['username'] = raw_input("Please enter your name: ")
     with open('.gameinfo.json', 'w') as f:
-        f.write(json.dumps(gameinfo))
+        game_info.update(kwargs)
+        f.write(json.dumps(game_info))
+
 
 def game_play():
-    from django.db.models.query import QuerySet
+    "Imports all models. Runs the game"
     from authors.models import Book, Author, Publisher
-    print "Type 'q' and press RETURN to quit"
+    print colorize("\nType 'q' and press RETURN to quit\n", fg="green")
 
+    game_info = {}
     try:
         with open('.gameinfo.json', 'r') as f:
-            level = json.loads(f.read())['current_level']
+            game_info = json.loads(f.read())
+            level = game_info['level']
+            username = game_info['username']
     except IOError:
+        with open('.gameinfo.json', 'w') as f:
+            f.write('{}')
         level = 1
-        dump_gameinfo()
+        dump_gameinfo(level=1)
 
     level_changed = True
     while True:
@@ -34,10 +49,15 @@ def game_play():
             level_dict = levels[level]
         except IndexError:
             print "Great! You are a queryset Champion!"
-            break
+            if raw_input("Do you want to play again? [yn] ") == 'y':
+                level = 1
+                dump_gameinfo(level=1)
+                continue
+            else:
+                break
         if level_changed:
-            print level_dict.get('greet')
-        print level_dict.get('question')
+            print colorize(level_dict.get('greet'), fg="blue")
+        print colorize(level_dict.get('question'), fg="green")
         inp = raw_input(">>> ")
         if inp == 'q':
             break
@@ -46,15 +66,18 @@ def game_play():
         except Exception, e:
             print e
         else:
-            passed = level_dict['test'](qs)
+            try:
+                passed = level_dict['test'](qs)
+            except Exception, e:
+                passed = False
             if passed:
                 level_changed = True
-                print level_dict['goodbye']
+                print colorize(level_dict['goodbye'], fg="red")
                 level += 1
                 dump_gameinfo(level=level)
             else:
                 level_changed = False
-                print 'Try again'
+                print colorize("Try again", fg="blue")
 
 
 if __name__ == "__main__":
