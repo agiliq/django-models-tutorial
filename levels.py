@@ -30,6 +30,8 @@ def level5(inp):
 def level6(inp):
     return inp == Author.objects.count()
 
+def level7(inp): pass
+
 levels = [
     {}, # To start from level1
     {
