@@ -26,10 +26,16 @@ def dump_gameinfo(**kwargs):
         f.write(json.dumps(game_info))
 
 
+def print_models():
+    print colorize("Here is the models.py.\n-----------\n", fg="green")
+    print open("authors/models.py", "r").read()
+    print colorize("--------\n", fg="green")
+
 def print_help():
    print """
          q: quits the game
          h: print this help
+         m: prints the models.py
        """
 
 def game_play():
@@ -70,6 +76,10 @@ def game_play():
         elif inp in ['h', 'help']:
             print_help()
             continue
+        elif inp in ['m', 'models']:
+            print_models()
+            continue
+
         try:
             qs = eval(inp)
         except Exception, e:
