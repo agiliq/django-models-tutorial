@@ -9,7 +9,7 @@ from authors.models import Book, Author, Publisher
 
 
 def level1(inp):
-    return True
+    return inp == Book or inp == Author or inp == Publisher 
 
 def level2(inp):
     return list(inp) == list(Author.objects.all())
@@ -39,12 +39,14 @@ levels = [
         'greet': """
     Welcome to the Queryget tutorial.
     The interactive queryset tutorial.
-    exit the prompt by typing "q"
+    exit the prompt by typing "q".
+    The models present for this tutorial are
+    Book, Author and Publisher
     """,
         'question': """
-    What is your name?
+    Enter the name of any model.
     """,
-        'goodbye': "",
+        'goodbye': "Thats right. Remember each model in models.py maps to one table.",
     },
     {
         'test': level2,
