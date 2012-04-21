@@ -59,7 +59,8 @@ levels = [
         'question': """
         How can you get all the Authors?
         """,
-        'goodbye': "",
+        'goodbye': """Thats right. Author.objects.all() will give you all the Authors. Publisher.objects.all() will give you all the publishers.
+         """,
     },
     {
         'test': level3,
