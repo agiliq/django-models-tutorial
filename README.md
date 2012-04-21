@@ -14,6 +14,10 @@ Each level is a dictionary with these keys.
 3. `question`: A string which will be shown each time a level is passed. (Until you give the correct answer.)
 4. `goodbye`: A string which is shown after you pass a level
 
+### Gameplay ###
+Each level (from levels.py) is played in order. You need to give the correct answer for a level before you are taken to the next level. User 
+input is `eval`ed and compared against correct result. As we want to compare results, `eval` is the only option. (String comparision of input won't do.)
+
 ### Todo ###
 
 1. Add tests
