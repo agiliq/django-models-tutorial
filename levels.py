@@ -30,7 +30,8 @@ def level5(inp):
 def level6(inp):
     return inp == Author.objects.count()
 
-def level7(inp): pass
+def level7(inp):
+    return list(inp) == list(Book.objects.order_by("title"))
 
 levels = [
     {}, # To start from level1
@@ -87,10 +88,10 @@ levels = [
     Publisher.objects.exclude(country='USA')
     """,
         'question': """
-    How can you get all the Books other than the one with The Merchant of Venic
+    How can you get all the Books other than the one with The Merchant of Venice
     as title?
     """,
-        'goodbye': "",
+        'goodbye': "Good work",
     },
     {
         'test': level5,
@@ -105,12 +106,12 @@ levels = [
         'question': """
     Now, can you create a new author with name Neal Stephenson?
     """,
-        'goodbye': "",
+        'goodbye': "Cool, now we know about Neal Stephenson",
     },
     {
         'test': level6,
         'greet': """
-    What about learning some counting???
+    What about learning some counting?
     You can get the count of the number of objects we have in our database using
     count statement
     
@@ -121,22 +122,22 @@ levels = [
         'question': """
     Now, can you check the number of Books in the Book model?
     """,
-        'goodbye': "",
+        'goodbye': "Thats right. We have %s books."%Book.objects.count(),
     },
     {
         'test': level7,
         'greet': """
-    Now, let's do some ordering???
+    Now, let's do some ordering?
     We can order querysets by using order_by.
     
-    For example, to get the number of Authors in the database, you can use
-
-    Author.objects.count()
+    For example, to get the 
+authors sorted by first_name you can use
+    Author.objects.all().order_by("first_name")
     """,
         'question': """
-    Now, can you check the number of Books in the Book model?
+    Now, can you get all the Books sorted by title? 
     """,
-        'goodbye': "",
+        'goodbye': "Good work",
     }
 
 
