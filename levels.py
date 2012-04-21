@@ -74,7 +74,7 @@ levels = [
         'question': """
     How can you get all the Authors with first_name Stephen?
     """,
-        'goodbye': "",
+        'goodbye': "Correct. Author.objects.filter(first_name='Stephen') will get you that.",
     },
     {
         'test': level4,
