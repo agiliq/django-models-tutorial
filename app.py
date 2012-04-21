@@ -32,17 +32,16 @@ def print_models():
     print colorize("--------\n", fg="green")
 
 def print_help():
-   print """
+   print colorize("""
          q: quits the game
          h: print this help
          m: prints the models.py
-       """
+       """, fg="green")
 
 def game_play():
     "Imports all models. Runs the game"
     from authors.models import Book, Author, Publisher
-    print colorize("\nType 'q' and press RETURN to quit\nType 'h' for help\n", fg="green")
-
+    print_help()
     game_info = {}
     try:
         with open('.gameinfo.json', 'r') as f:
