@@ -26,10 +26,16 @@ def dump_gameinfo(**kwargs):
         f.write(json.dumps(game_info))
 
 
+def print_help():
+   print """
+         q: quits the game
+         h: print this help
+       """
+
 def game_play():
     "Imports all models. Runs the game"
     from authors.models import Book, Author, Publisher
-    print colorize("\nType 'q' and press RETURN to quit\n", fg="green")
+    print colorize("\nType 'q' and press RETURN to quit\nType 'h' for help\n", fg="green")
 
     game_info = {}
     try:
@@ -61,6 +67,9 @@ def game_play():
         inp = raw_input(">>> ")
         if inp == 'q':
             break
+        elif inp in ['h', 'help']:
+            print_help()
+            continue
         try:
             qs = eval(inp)
         except Exception, e:
