@@ -39,7 +39,7 @@ levels = [
         'greet': """
     Welcome to the Queryget tutorial.
     The interactive queryset tutorial.
-    exit the prompt by typing "q".
+    We assume some familiarity with Python and Django.
     The models present for this tutorial are
     Book, Author and Publisher
     """,
