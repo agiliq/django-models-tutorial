@@ -33,6 +33,10 @@ def level6(inp):
 def level7(inp):
     return list(inp) == list(Book.objects.order_by("title"))
 
+def level8(inp):
+    return list(inp) == list(Author.objects.filter(first_name="Stephen").exclude(last_name='Hawkings'))
+
+
 levels = [
     {}, # To start from level1
     {
@@ -140,10 +144,21 @@ authors sorted by first_name you can use
     Now, can you get all the Books sorted by title? 
     """,
         'goodbye': "Good work",
+    },
+    {
+        'test': level8,
+        'greet': """
+    Now, We'll try multiple methos on same queryset.
+    We can apply different method like filter, exclude etc
+    recursively. 
+    
+    For example, we can get all the publishers with country as USA,
+    but, not Delacorte Press as name
+    Publisher.objects.filter(country='USA').exlude(name='Delacorte Press')
+    """,
+        'question': """
+    Now, can you get all authors with frist_name Stephen, other than Stephen Hawksngs? 
+    """,
+        'goodbye': "Good work",
     }
-
-
-
-
-
 ]

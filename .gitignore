@@ -1,1 +1,3 @@
 *.pyc
+books.db
+.gameinfo.json
