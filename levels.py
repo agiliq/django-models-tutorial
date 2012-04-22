@@ -30,6 +30,8 @@ def level5(inp):
 def level6(inp):
     return inp == Author.objects.count()
 
+def level7(inp):
+    return [book.title for book in inp] == [db_book.title for db_book in Book.objects.order_by('title')]
 levels = [
     {}, # To start from level1
     {
@@ -37,7 +39,8 @@ levels = [
         'greet': """
     Welcome to the Queryget tutorial.
     The interactive queryset tutorial.
-    exit the prompt by typing "q"
+    INFO: Available models are Author, Book and Publisher
+    INFO: Exit the prompt by typing "q"
     """,
         'question': """
     What is your name?
@@ -126,10 +129,10 @@ levels = [
     
     For example, to get the number of Authors in the database, you can use
 
-    Author.objects.count()
+    Author.objects.order_by('first_name')
     """,
         'question': """
-    Now, can you check the number of Books in the Book model?
+    Now, can you order the books in the ascending order of title?
     """,
         'goodbye': "",
     }

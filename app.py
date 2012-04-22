@@ -16,6 +16,7 @@ def dump_gameinfo(level=1, **kwargs):
     with open('.gameinfo.json', 'w') as f:
         f.write(json.dumps(gameinfo))
 
+
 def game_play():
     from django.db.models.query import QuerySet
     from authors.models import Book, Author, Publisher
@@ -61,4 +62,3 @@ if __name__ == "__main__":
     readline.parse_and_bind('tab: complete')
     readline.parse_and_bind('set editing-mode emacs')
     game_play()
-
