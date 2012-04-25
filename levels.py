@@ -36,6 +36,10 @@ def level7(inp):
 def level8(inp):
     return list(inp) == list(Author.objects.filter(first_name="Stephen").exclude(last_name='Hawkings'))
 
+def level9(inp):
+    return list(inp) == list(Author.objects.filter(first_name="Stephen").exclude(last_name='Hawkings'))
+
+
 
 levels = [
     {}, # To start from level1
