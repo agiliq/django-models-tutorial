@@ -37,13 +37,24 @@ def level8(inp):
     return list(inp) == list(Author.objects.filter(first_name="Stephen").exclude(last_name='Hawkings'))
 
 def level9(inp):
-    return list(inp) == list(Author.objects.filter(first_name="Stephen").exclude(last_name='Hawkings'))
+    return inp == Book.objects.all()[0].publisher
 
+def setup_level_9():
+    book = Book.objects.all()[0]
+    return {"book": book}
+
+def level10(inp):
+    return list(inp) == list(Publisher.objects.all()[0].book_set.all())
+
+def setup_level_10():
+    publisher = Publisher.objects.all()[0]
+    return {"publisher": publisher}
 
 
 levels = [
     {}, # To start from level1
     {
+    
         'test': level1,
         'greet': """
     Welcome to the Queryget tutorial.
@@ -60,6 +71,7 @@ levels = [
         'goodbye': "Thats right. Remember each model in models.py maps to one table.",
     },
     {
+    
         'test': level2,
         'greet': """
     The first method you should know about is .all.
@@ -163,5 +175,29 @@ authors sorted by first_name you can use
     Now, can you get all authors with first_name Stephen, other than Stephen Hawkings? 
     """,
         'goodbye': "Good work",
-    }
+    },
+    {
+    "setup": setup_level_9,
+        'test': level9,
+        'greet': """
+    A queryset contains model instances. A model instance can be used to get access to other models it is related to
+    via ForeignKey
+    """,
+        'question': """
+    We have a book in the book variable. How can you get its publisher (see the models file to see the ForeignKeys).
+    """,
+        'goodbye': "Good work",
+    },
+    {
+    "setup": setup_level_10,
+        'test': level10,
+        'greet': """
+    Models create the functions to get the related objects in opposite direction as well. Since Book has a ForeignKey to Publisher,
+    Publisher instances get a book_set method which can be used to get all the related books.
+    """,
+        'question': """
+    We have a publisher in the publisher variable. How can you get all its related books (see the models file to see the ForeignKeys).
+    """,
+        'goodbye': "Good work",
+    },
 ]

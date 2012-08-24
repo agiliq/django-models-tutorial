@@ -56,9 +56,12 @@ def game_play():
         dump_gameinfo(level=1)
 
     level_changed = True
+
     while True:
         try:
             level_dict = levels[level]
+            if "setup" in level_dict:
+               globals().update(level_dict["setup"]())
         except IndexError:
             print "Great! You are a queryset Champion!"
             if raw_input("Do you want to play again? [yn] ") == 'y':
@@ -80,7 +83,17 @@ def game_play():
             print_models()
             continue
 
+        elif inp.startswith("jump"):
+            level_changed = True
+            level = int(inp.split(" ")[-1])
+            dump_gameinfo(level=level)
+            continue
+        elif inp == "debug":
+            print locals()
+            print globals()
+
         try:
+            print inp
             qs = eval(inp)
         except Exception, e:
             print e
