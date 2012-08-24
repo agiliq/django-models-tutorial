@@ -62,7 +62,7 @@ levels = [
     {
         'test': level2,
         'greet': """
-    The first article you should know about is .all.
+    The first method you should know about is .all.
     It will give you all the entries for a particular model.
     Eg to get all the Books, the command is
     Book.objects.all()
@@ -76,8 +76,8 @@ levels = [
     {
         'test': level3,
         'greet': """
-    The second article is about filter.
-    Filter filters out the queryset, based on the specific 
+    The second method is .filter.
+    .filter filters out the queryset, based on the specific 
     field restrictions you set for the query.
     For example, to get the publishers with country as USA, you can use
     Publisher.objects.filter(country='USA')
@@ -90,10 +90,10 @@ levels = [
     {
         'test': level4,
         'greet': """
-    This level we'll learn more about exclude.
-    exlude too, like filter, filters out the queryset, based on the specific 
-    field restrictions you set for the query. But, it just excludes the ones
-    matching the arguments.
+    This level we'll learn about .exclude.
+    .exlude like .filter, filters out the queryset, based on the specific 
+    field restrictions you set for the query. But it excludes the ones
+    matching the arguments. You can think of it as oposite of .filter.
     For example, to get the publishers with country other than USA, you can use
     Publisher.objects.exclude(country='USA')
     """,
@@ -106,8 +106,8 @@ levels = [
     {
         'test': level5,
         'greet': """
-    This level we'll learn more create.
-    create is to create new objects for a model. This creates new rows in database
+    This level we'll learn about .create.
+    .create is to create new objects for a model. This creates new rows in database
     tables, and takes model fields as arguments
     For example, to create a new Author named John Grisham, you can use
 
@@ -122,8 +122,8 @@ levels = [
         'test': level6,
         'greet': """
     What about learning some counting?
-    You can get the count of the number of objects we have in our database using
-    count statement
+    You can get the count of the number of objects we have in a table using
+    .count 
     
     For example, to get the number of Authors in the database, you can use
 
@@ -152,16 +152,15 @@ authors sorted by first_name you can use
     {
         'test': level8,
         'greet': """
-    Now, We'll try multiple methos on same queryset.
-    We can apply different method like filter, exclude etc
-    recursively. 
+    Now, We'll try multiple methods on same queryset.
+    We can chain method queryset like .filter, .exclude. 
     
     For example, we can get all the publishers with country as USA,
     but, not Delacorte Press as name
     Publisher.objects.filter(country='USA').exlude(name='Delacorte Press')
     """,
         'question': """
-    Now, can you get all authors with frist_name Stephen, other than Stephen Hawksngs? 
+    Now, can you get all authors with first_name Stephen, other than Stephen Hawkings? 
     """,
         'goodbye': "Good work",
     }
