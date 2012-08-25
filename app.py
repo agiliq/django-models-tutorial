@@ -91,6 +91,9 @@ def game_play():
         elif inp == "debug":
             print locals()
             print globals()
+            import pdb
+            pdb.set_trace()
+            continue
 
         try:
             print inp
