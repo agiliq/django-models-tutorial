@@ -1,4 +1,4 @@
-An interactive queryset tutorial inspired by [Githug](https://github.com/Gazler/githug).
+An interactive Django models tutorial inspired by [Githug](https://github.com/Gazler/githug) and [Ruby Koans](https://github.com/edgecase/ruby_koans).
 
 ### Usage ###
 python app.py
